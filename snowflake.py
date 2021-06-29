@@ -1,4 +1,4 @@
-__all__ = ["Snowflake", "setup_async"]
+__all__ = ["Snowflake", "get_snowflake"]
 
 import datetime
 from typing import Callable, Coroutine, Any
@@ -47,13 +47,11 @@ class Snowflake(int):
         return (self & self._MASK_MACHINE_ID) >> self._BIT_LENGTH_SEQUENCE
 
 
-def setup_async(uri: str) -> Callable[[], Coroutine[Any, Any, Snowflake]]:
-    async def get_snowflake() -> Snowflake:
-        async with httpx.AsyncClient() as client:
-            r = await client.get(uri)
-        r.raise_for_status()
-        return Snowflake(r.json()["id"])
+async def get_snowflake(uri="http://host.docker.internal:8080") -> Snowflake:
+    async with httpx.AsyncClient() as client:
+        r = await client.get(uri)
+    r.raise_for_status()
+    return Snowflake(r.json()["id"])
 
-    return get_snowflake
 
 

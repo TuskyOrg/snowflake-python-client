@@ -1,5 +1,8 @@
 # Snowflake
 ##### Python client for accessing Tusky's "snowflake" microservice
+# WARNING ⚠: BREAKING CHANGES
+This is a development build.
+`get_snowflake`'s default uri will likely change for the production release. 
 ## Example
 ### Using Poetry
 ```
@@ -11,10 +14,8 @@ from typing import Any, Dict
 
 import snowflake
 
-get_snowflake = snowflake.setup_async("http://localhost:8080")
-
 async def create_item(title: str) -> Dict[str, Any]:
-    id = await get_snowflake()
+    id = await snowflake.get_snowflake()
     return {
         "id": id,
         "title": title
