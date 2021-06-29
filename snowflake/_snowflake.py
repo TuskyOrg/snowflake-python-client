@@ -1,7 +1,4 @@
-__all__ = ["Snowflake", "get_snowflake"]
-
 import datetime
-from typing import Callable, Coroutine, Any
 
 import httpx
 
@@ -52,6 +49,3 @@ async def get_snowflake(uri="http://host.docker.internal:8080") -> Snowflake:
         r = await client.get(uri)
     r.raise_for_status()
     return Snowflake(r.json()["id"])
-
-
-

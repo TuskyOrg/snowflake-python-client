@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "snowflake"
-version = "0.0.1"
+version = "0.0.2"
 description = "Tusky's Snowflake microservice client"
 authors = ["Snapper <LearningWithSnapper@gmail.com>"]
 license = "MIT"
