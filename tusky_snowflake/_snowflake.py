@@ -49,3 +49,9 @@ async def get_snowflake(uri="http://host.docker.internal:8080") -> Snowflake:
         r = await client.get(uri)
     r.raise_for_status()
     return Snowflake(r.json()["id"])
+
+
+def synchronous_get_snowflake(uri="http://host.docker.internal:8080") -> Snowflake:
+    r = httpx.get(uri)
+    r.raise_for_status()
+    return Snowflake(r.json()["id"])

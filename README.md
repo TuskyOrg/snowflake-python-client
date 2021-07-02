@@ -12,10 +12,10 @@ poetry add git+https://github.com/TuskyOrg/snowflake-python-client.git
 ```python3
 from typing import Any, Dict
 
-import snowflake
+import tusky_snowflake
 
 async def create_item(title: str) -> Dict[str, Any]:
-    id = await snowflake.get_snowflake()
+    id = await tusky_snowflake.get_snowflake()
     return {
         "id": id,
         "title": title
